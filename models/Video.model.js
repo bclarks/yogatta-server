@@ -1,6 +1,10 @@
-const { schema, model } = require("mongoose");
+const { Schema, model } = require("mongoose");
 
 const videoModel = new Schema({
+  url: {
+    type: String,
+    required: true,
+  },
   title: {
     type: String,
     required: true,
