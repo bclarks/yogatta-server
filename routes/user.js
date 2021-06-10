@@ -2,17 +2,17 @@ const router = require("express").Router();
 const User = require("../models/User.model");
 const isLoggedIn = require("../middleware/isLoggedIn");
 
-router.get("/:username", (req, res) => {
+router.get("/:username", isLoggedIn, (req, res) => {
   User.findOne({
     username: req.params.username,
   })
-    .then((theUser) => {
-      if (!theUser) {
+    .then((foundUser) => {
+      if (!foundUser) {
         return res.status(400).json({
           errorMessage: "User doesn't exist!",
         });
       }
-      return res.json({ user: theUser });
+      return res.json({ user: foundUser });
     })
     .catch((err) => {
       console.log(err);

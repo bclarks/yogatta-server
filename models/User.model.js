@@ -11,17 +11,6 @@ const userSchema = new Schema({
     required: true,
     type: String,
   },
-
-  // email: {
-  //   type: String,
-  //   unique: true,
-  //   required: true,
-  // },
-  profilePic: {
-    type: String,
-    default:
-      "https://media-exp1.licdn.com/dms/image/C561BAQFRtLf5GqErTw/company-background_10000/0/1570730811895?e=2159024400&v=beta&t=PzFlDGJ6h-Mt_n4W3HZwYO324_0Q78hE6JoMKBN7EAw",
-  },
   savedVideos: [{ type: Schema.Types.ObjectId, ref: "Video" }],
 });
 
