@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const User = require("../models/User.model");
-const Session = require("../models/Session.model");
 const isLoggedIn = require("../middleware/isLoggedIn");
 
 router.get("/:username", isLoggedIn, (req, res) => {
