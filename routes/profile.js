@@ -3,7 +3,7 @@ const User = require("../models/User.model");
 const isLoggedIn = require("../middleware/isLoggedIn");
 
 router.put(`/update`, isLoggedIn, (req, res) => {
-  const { username, email } = req.body;
+  const { username } = req.body;
 
   if (username.length < 8) {
   }
@@ -12,7 +12,6 @@ router.put(`/update`, isLoggedIn, (req, res) => {
       (eachUser) => eachUser._id.toString() !== req.user._id.toString()
     );
     if (allNotMe.length) {
-      // OPPSIE, WE CAN'T UPDATE
     }
 
     User.findByIdAndUpdate(req.user._id, { username }, { new: true }).then(

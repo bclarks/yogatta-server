@@ -10,4 +10,7 @@ router.use("/auth", authRoutes);
 const userRoutes = require("./user");
 router.use("/user", userRoutes);
 
+const profileRouter = require("./profile");
+router.use("/profile", profileRouter);
+
 module.exports = router;
