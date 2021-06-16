@@ -19,5 +19,28 @@ router.get("/:username", isLoggedIn, (req, res) => {
       res.json(500).json({ errorMessage: err.message });
     });
 });
+router.get("/:username/delete", isLoggedIn, (req, res) => {
+  User.findById(req.user._id)
+    .then((foundUser) => {
+      return User.findByIdAndDelete(foundUser._id)
+        .then((deletedUser) => {
+          return Session.findOneAndDelete({
+            user: deletedUser._id,
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+          res.json(500).json({ errorMessage: err.message });
+        });
+    })
+    .then(() => {
+      console.log("We removed the session and the user!");
+      res.json(true);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.json(500).json({ errorMessage: err.message });
+    });
+});
 
 module.exports = router;
